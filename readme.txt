@@ -7,7 +7,7 @@ Stable tag: 0.1a
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The best way to share your tweets directly from your website.
+The best way to share your trending topics directly from your website.
 
 == Description ==
 
