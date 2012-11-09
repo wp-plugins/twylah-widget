@@ -214,7 +214,7 @@ class Twylah_Widget extends WP_Widget {
 		<?php } ?>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'username' ); ?>"><?php _e( 'Twitter Username:' ); ?></label> 
+			<label for="<?php echo $this->get_field_id( 'username' ); ?>"><?php _e( 'Twitter Username (do not include @):' ); ?></label> 
 			<input class="widefat" id="<?php echo $this->get_field_id( 'username' ); ?>" name="<?php echo $this->get_field_name( 'username' ); ?>" type="text" value="<?php echo esc_attr( $user ); ?>" />
 		</p>
 		<p>
