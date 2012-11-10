@@ -55,6 +55,17 @@ class Twylah_Widget extends WP_Widget {
 	private static function TwylahGetContentOptionName($username, $layout){
 		return Twylah_Widget::Twylah_Widget_BaseId . "_" . $username ."_" . $layout . "_" . "content";
 	}
+	private static function TwylahGetData($url) {
+		  $ch = curl_init();
+		  $timeout = 5;
+		  curl_setopt($ch, CURLOPT_URL, $url);
+		  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		  curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+		  $data = curl_exec($ch);
+		  curl_close($ch);
+		  return $data;
+	}
+	
 	public static function TwylahValidateInstance($instance){
 		//check to make sure everything submitted is ok
 		if(!$instance['username']){
@@ -88,7 +99,7 @@ class Twylah_Widget extends WP_Widget {
 
 				$r = 'http://www.twylah.com/'.urlencode($username).'/widgets/trending_render?layout='.urlencode($layout).'&widget_caption='.urlencode($widgetCaption);
 				try {
-					$info = file_get_contents($r);
+					$info = Twylah_Widget::TwylahGetData($r);
 				} catch(Exception $e){
 					
 				}
@@ -123,7 +134,7 @@ class Twylah_Widget extends WP_Widget {
 					
 					$r = 'http://www.twylah.com/'.urlencode($username).'/widgets/trending_render?layout='.urlencode($layoutType).'&widget_caption='.urlencode($widgetCaption);
 					try {
-						$info = file_get_contents($r);
+						$info = Twylah_Widget::TwylahGetData($r);
 					} catch(Exception $e){
 						
 					}
@@ -147,8 +158,6 @@ class Twylah_Widget extends WP_Widget {
 			return true;
 		}
 		return false;
-
-		
 	}
 	
 	public function __construct() {
