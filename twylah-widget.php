@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Twylah Widget
- * Plugin URI: http://www.twylah.com/
+ * Plugin URI: http://wordpress.org/extend/plugins/twylah-widget/
  * Description: The best way to share your tweets directly from your website.
  * Version: 0.1a
  * Author: Xi-Lin Yeh
@@ -195,6 +195,7 @@ class Twylah_Widget extends WP_Widget {
 			$instance['title'] = strip_tags( $new_instance['title'] );
 			$instance['caption'] = strip_tags( $new_instance['caption'] );
 			$instance['username'] = trim(strip_tags( $new_instance['username'] ));
+			$instance['username'] = substr($instance['username'], 0, 1) === "@" ? substr($instance['username'],1) : $instance['username'];
 			$instance['layout'] = $new_instance['layout'] ? $new_instance['layout'] : "vertical";
 		}
 		
@@ -223,8 +224,8 @@ class Twylah_Widget extends WP_Widget {
 		<?php } ?>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'username' ); ?>"><?php _e( 'Twitter Username (do not include @):' ); ?></label> 
-			<input class="widefat" id="<?php echo $this->get_field_id( 'username' ); ?>" name="<?php echo $this->get_field_name( 'username' ); ?>" type="text" value="<?php echo esc_attr( $user ); ?>" />
+			<label for="<?php echo $this->get_field_id( 'username' ); ?>"><?php _e( 'Twitter Username:' ); ?></label><br/>
+			@<input class="widefat" id="<?php echo $this->get_field_id( 'username' ); ?>" name="<?php echo $this->get_field_name( 'username' ); ?>" type="text" value="<?php echo esc_attr( $user ); ?>" style="width:90%" />
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'caption' ); ?>"><?php _e( 'Widget Caption <em>(optional)</em>:' ); ?></label> 
